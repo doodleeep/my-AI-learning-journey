@@ -38,3 +38,18 @@
   ],
   "Draft_Reply": "Bonjour, Je comprends parfaitement votre frustration et je vous présente mes plus sincères excuses pour ce retard. C'est inacceptable de notre côté également. Je m'occupe personnellement de votre dossier à l'instant. Vous recevrez le rapport final d'ici la fin de la journée. Je reste à votre entière disposition."
 }
+### Test Case 2: The Urgent Adjustment (Romanian)
+**Input Email:**
+*“Salut, am o rugăminte urgentă. Puteți modifica bugetul pentru campania de vineri? Vrem să-l creștem cu 20%. Aștept confirmarea voastră rapidă, mulțumesc mult pentru tot ajutorul din ultima vreme!”*
+
+**AI Output (JSON):**
+```json
+{
+  "Detected_Language": "RO",
+  "Sentiment_Score": 8,
+  "Key_Action_Items": [
+    "Increase Friday's campaign budget by 20%",
+    "Send quick confirmation"
+  ],
+  "Draft_Reply": "Salut, Mulțumim pentru mesaj și pentru aprecieri! Am primit solicitarea. Confirm că am ajustat bugetul pentru campania de vineri cu un plus de 20%. Totul este setat și gata de lansare. O zi excelentă în continuare!"
+}
