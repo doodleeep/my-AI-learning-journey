@@ -1,0 +1,41 @@
+import os
+from openai import OpenAI
+
+# Inițializăm clientul OpenAI (necesită un API Key valid)
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+
+def analyze_client_email(email_text):
+    """
+    Funcție care preia un email de la client și returnează analiza JSON
+    (Limbă, Sentiment, Acțiuni, Răspuns) folosind modelul GPT.
+    """
+    
+    system_prompt = """
+    You are an Elite Multilingual Client Account Manager (EN, FR, RO).
+    Output ONLY a valid JSON with: Detected_Language, Sentiment_Score (1-10), Key_Action_Items (list), Draft_Reply.
+    """
+    
+    try:
+        # Apelăm API-ul OpenAI pentru a analiza textul
+        response = client.chat.completions.create(
+            model="gpt-4",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": f"Analyze this client email:\n\n{email_text}"}
+            ],
+            temperature=0.2 # Temperatură scăzută pentru precizie și logică strictă
+        )
+        
+        return response.choices[0].message.content
+        
+    except Exception as e:
+        return f"Eroare la conectarea cu AI: {e}"
+
+# --- ZONA DE TESTARE A CODULUI ---
+if __name__ == "__main__":
+    # Exemplu de email primit de la un client (în Franceză)
+    test_email = "Bonjour, le rapport est en retard. C'est inacceptable, appelez-moi!"
+    
+    print("Analizăm email-ul clientului... ⏳\n")
+    rezultat = analyze_client_email(test_email)
+    print(rezultat)
